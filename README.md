@@ -1,58 +1,350 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 📸 LensArt - Sistem Informasi Reservasi Studio Foto Berbasis Website
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+LensArt adalah sistem informasi reservasi studio foto berbasis website yang dibuat untuk membantu proses reservasi pelanggan di Studio LensArt. Melalui sistem ini, customer dapat melakukan reservasi secara online, memilih paket foto, menentukan jadwal pemotretan, melakukan pembayaran melalui QRIS, serta mengunggah bukti pembayaran.
 
-## About Laravel
+Sistem ini juga menyediakan halaman owner untuk mengelola data reservasi, melihat detail booking, memverifikasi pembayaran customer, serta memantau data reservasi melalui dashboard.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Dibuat oleh: **Citra Dwi Lestari**
+NIM: **242410101009**
+Program Studi: **Sistem Informasi**
+Fakultas Ilmu Komputer - Universitas Jember
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Demo Video: 
+Deploy Website: 
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## ✨ Fitur Utama
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Aplikasi LensArt memiliki dua jenis pengguna, yaitu **Customer** dan **Owner**.
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Fitur Customer
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+* Registrasi akun customer.
+* Login dan logout akun.
+* Melihat dashboard customer.
+* Melihat informasi paket foto.
+* Melakukan reservasi studio foto.
+* Melihat riwayat reservasi pribadi.
+* Melihat status pembayaran.
+* Mengelola profil customer.
+* Mengatur preferensi tampilan website, seperti mode terang dan mode gelap.
+* Melihat informasi cuaca sebelum melakukan reservasi.
 
-## Agentic Development
+### Fitur Owner
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+* Login dan logout sebagai owner.
+* Melihat dashboard owner.
+* Melihat statistik reservasi.
+* Melihat daftar seluruh reservasi customer.
+* Melakukan pencarian reservasi secara dinamis.
+* Menambahkan reservasi secara manual.
+* Mengedit data reservasi.
+* Menghapus data reservasi.
+* Melihat detail reservasi.
+* Melihat bukti pembayaran customer.
+* Menandai pembayaran sebagai lunas.
+* Menolak pembayaran jika bukti tidak sesuai.
+* Mengelola profil owner.
+
+---
+
+## 🛠️ Teknologi yang Digunakan
+
+Sistem LensArt dibangun menggunakan beberapa teknologi berikut:
+
+* **HTML**: digunakan untuk menyusun struktur halaman website.
+* **CSS**: digunakan untuk mengatur tampilan website, layout, warna, card, tabel, tombol, dan dark mode.
+* **JavaScript**: digunakan untuk membuat halaman lebih interaktif, seperti preview harga otomatis, filter reservasi, pengaturan slot jam, dan toggle mode.
+* **Fetch API / AJAX**: digunakan untuk fitur pencarian reservasi secara dinamis tanpa reload halaman.
+* **PHP**: digunakan sebagai bahasa pemrograman server-side.
+* **Laravel**: digunakan sebagai framework utama untuk routing, controller, model, middleware, validasi, autentikasi, dan database.
+* **Blade Template**: digunakan untuk membuat tampilan halaman Laravel secara dinamis.
+* **MySQL**: digunakan sebagai database untuk menyimpan data user, reservasi, jadwal, paket, harga, dan pembayaran.
+* **Session**: digunakan untuk login, logout, pembatasan akses, role user, dan session counter.
+* **Cookies**: digunakan untuk menyimpan preferensi tampilan seperti mode terang/gelap dan ukuran font.
+* **GitHub**: digunakan sebagai repository penyimpanan source code project.
+
+---
+
+## 🗂️ Struktur Database
+
+Database utama yang digunakan adalah **MySQL** dengan beberapa tabel penting berikut:
+
+1. **users**
+   Menyimpan data akun pengguna, baik owner maupun customer.
+
+2. **reservasis**
+   Menyimpan data reservasi, seperti kode booking, nama pelanggan, email, nomor HP, paket foto, harga, tanggal, jam, metode pembayaran, status pembayaran, dan bukti pembayaran.
+
+3. **profil_owners**
+   Menyimpan data profil owner atau informasi studio.
+
+4. **layanan_tambahans**
+   Menyimpan data layanan tambahan.
+
+5. **layanan_reservasi**
+   Menyimpan relasi antara reservasi dan layanan tambahan.
+
+Tabel pendukung Laravel seperti `sessions`, `cache`, `cache_locks`, `password_reset_tokens`, dan `migrations` digunakan untuk kebutuhan teknis sistem.
+
+---
+
+## 💳 Status Pembayaran
+
+Sistem LensArt menggunakan beberapa status pembayaran:
+
+* **Belum Bayar**: customer sudah membuat reservasi, tetapi belum mengunggah bukti pembayaran.
+* **Menunggu Verifikasi**: customer sudah mengunggah bukti pembayaran dan menunggu pengecekan owner.
+* **Lunas**: pembayaran sudah disetujui oleh owner.
+* **Ditolak**: bukti pembayaran ditolak oleh owner.
+
+Reservasi yang dibuat oleh owner secara manual akan otomatis memiliki status pembayaran **Lunas**.
+
+---
+
+## ⏰ Sistem Slot Reservasi
+
+Sistem menggunakan slot jadwal per 30 menit. Customer dapat memilih tanggal dan jam reservasi yang tersedia.
+
+Jika suatu tanggal dan jam sudah dibooking oleh customer lain, maka slot tersebut tidak dapat dipilih kembali. Fitur ini digunakan untuk mencegah jadwal pemotretan bertabrakan.
+
+---
+
+## 📡 Implementasi AJAX
+
+Fitur AJAX diterapkan pada halaman manajemen reservasi owner.
+
+Owner dapat mencari data reservasi berdasarkan nama, email, kode booking, paket foto, tanggal, atau status pembayaran. Pencarian dilakukan menggunakan **Fetch API** dan data dikembalikan dalam format **JSON**, sehingga tabel reservasi dapat diperbarui tanpa reload halaman penuh.
+
+---
+
+## 🍪 Implementasi Session dan Cookies
+
+### Session
+
+Session digunakan untuk:
+
+* Menyimpan status login pengguna.
+* Mengatur akses halaman berdasarkan role owner dan customer.
+* Menangani proses logout.
+* Menampilkan session counter pada dashboard customer.
+
+### Cookies
+
+Cookies digunakan untuk:
+
+* Menyimpan preferensi mode terang dan mode gelap.
+* Menyimpan preferensi ukuran font.
+* Menyimpan data kunjungan dashboard customer agar tetap tersimpan setelah logout dan login kembali.
+
+---
+
+## 🚀 Cara Instalasi dan Menjalankan Aplikasi Lokal
+
+Ikuti langkah-langkah berikut untuk menjalankan project LensArt di komputer/laptop.
+
+### 1. Persyaratan Sistem
+
+Pastikan sudah menginstal:
+
+* PHP minimal versi 8.2
+* Composer
+* Node.js dan NPM
+* MySQL
+* XAMPP atau Laragon
+* Git
+* Browser seperti Chrome atau Edge
+
+---
+
+### 2. Clone Repository
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone <URL_REPOSITORY_GITHUB_ANDA>
+cd <NAMA_FOLDER_PROJECT>
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Contoh:
 
-## Contributing
+```bash
+git clone https://github.com/username/lensart.git
+cd lensart
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+### 3. Install Dependency Laravel
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+composer install
+```
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 4. Install Dependency Frontend
 
-## License
+```bash
+npm install
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+
+### 5. Salin File Environment
+
+```bash
+cp .env.example .env
+```
+
+Jika menggunakan Windows dan perintah tersebut tidak bisa, salin file `.env.example` secara manual lalu ubah namanya menjadi `.env`.
+
+---
+
+### 6. Generate Application Key
+
+```bash
+php artisan key:generate
+```
+
+---
+
+### 7. Konfigurasi Database
+
+Buat database baru di phpMyAdmin dengan nama:
+
+```text
+lensart_db
+```
+
+Lalu sesuaikan file `.env`:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=lensart_db
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+Tambahkan juga timezone:
+
+```env
+APP_TIMEZONE=Asia/Jakarta
+```
+
+Jika tidak menggunakan queue database, gunakan:
+
+```env
+QUEUE_CONNECTION=sync
+```
+
+---
+
+### 8. Jalankan Migration
+
+```bash
+php artisan migrate
+```
+
+---
+
+### 9. Buat Storage Link
+
+```bash
+php artisan storage:link
+```
+
+Perintah ini digunakan agar file upload, seperti bukti pembayaran, dapat ditampilkan melalui folder public.
+
+---
+
+### 10. Jalankan Asset Frontend
+
+```bash
+npm run dev
+```
+
+Biarkan terminal ini tetap berjalan.
+
+---
+
+### 11. Jalankan Server Laravel
+
+Buka terminal baru, lalu jalankan:
+
+```bash
+php artisan serve
+```
+
+Aplikasi dapat diakses melalui:
+
+```text
+http://127.0.0.1:8000
+```
+
+---
+
+## 🔐 Akun Default untuk Uji Coba
+
+Gunakan akun berikut untuk mencoba sistem.
+
+### Owner
+
+```text
+Email    : owner@gmail.com
+Password : owner123
+```
+
+### Customer
+
+```text
+Email    : citraadwii002@gmail.com
+Password : citra123
+```
+
+Jika akun belum tersedia, pengguna dapat melakukan register terlebih dahulu atau membuat akun melalui database/seeder.
+
+---
+
+## 🧪 Alur Penggunaan Aplikasi
+
+### Alur Customer
+
+1. Buka halaman utama LensArt.
+2. Register atau login sebagai customer.
+3. Masuk ke dashboard customer.
+4. Pilih menu Reservasi.
+5. Buat reservasi baru.
+6. Pilih paket foto, tanggal, dan jam pemotretan.
+7. Sistem menampilkan harga otomatis.
+8. Sistem mencegah pemilihan slot yang sudah dibooking.
+9. Customer diarahkan ke halaman pembayaran QRIS.
+10. Customer mengunggah bukti pembayaran.
+11. Customer menunggu verifikasi pembayaran dari owner.
+
+### Alur Owner
+
+1. Login sebagai owner.
+2. Masuk ke dashboard owner.
+3. Melihat statistik reservasi.
+4. Membuka menu Reservasi.
+5. Melakukan pencarian data reservasi menggunakan live search.
+6. Membuka detail reservasi.
+7. Memeriksa bukti pembayaran.
+8. Menandai pembayaran sebagai lunas atau ditolak.
+9. Menambah, mengedit, atau menghapus data reservasi jika diperlukan.
+
+---
+
+## 🔮 Pengembangan Selanjutnya
+
+Beberapa pengembangan yang dapat dilakukan pada versi berikutnya:
+
+* Integrasi payment gateway otomatis.
+* Cetak invoice atau bukti reservasi.
+* Export laporan reservasi.
+* Grafik pendapatan studio.
+* Pengembangan aplikasi versi mobile.
+
+---
