@@ -9,8 +9,7 @@ NIM: **242410101009**
 Program Studi: **Sistem Informasi**
 Fakultas Ilmu Komputer - Universitas Jember
 
-Demo Video: 
-Deploy Website: 
+Deploy Website: http://studiolens-art.my.id/
 
 ---
 
